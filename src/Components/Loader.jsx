@@ -4,15 +4,15 @@ import styled from 'styled-components'
 const Loader = () => {
     return (
         <LODER id='preloader'>
-            <div class='spinner'>
-                <span class='ball-1'></span>
-                <span class='ball-2'></span>
-                <span class='ball-3'></span>
-                <span class='ball-4'></span>
-                <span class='ball-5'></span>
-                <span class='ball-6'></span>
-                <span class='ball-7'></span>
-                <span class='ball-8'></span>
+            <div className='spinner'>
+                <span className='ball-1'></span>
+                <span className='ball-2'></span>
+                <span className='ball-3'></span>
+                <span className='ball-4'></span>
+                <span className='ball-5'></span>
+                <span className='ball-6'></span>
+                <span className='ball-7'></span>
+                <span className='ball-8'></span>
             </div>
         </LODER>
     )
