@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginStyled } from '../StyledComponents/LoginStyled'
+import Loader from './Loader'
 
 const Register = () => {
 
     const navigate = useNavigate()
+    const [loading, setLoading] =useState(false)
 
     const [user, setUser] = useState({
         fullname:"", email:"", phone:"", password:"", confirmPassword:""
@@ -17,6 +19,7 @@ const Register = () => {
 
     const OnsubmitHandler = (e)=>{
         e.preventDefault()
+        setLoading(true)
         if(user.password === user.confirmPassword){
             // alert(JSON.stringify(user))
             fetch('https://different-lingerie-goat.cyclic.app/add-user', {method:"POST", body:JSON.stringify({fullname:user.fullname, email:user.email, phone:user.phone, password:user.password}), headers:{'Content-Type':'application/json'}},)
@@ -24,10 +27,12 @@ const Register = () => {
                 if(res.status === 200){
                     navigate('/')
                 }else{
+                  setLoading(false)
                     alert("Something went wrong")
                 }
             })
         }else{
+          setLoading(false)
             setMassege("Password didn't matched")
             setTimeout(()=>{
                 setMassege("")
@@ -37,7 +42,9 @@ const Register = () => {
     }
 
   return (
-    <LoginStyled className="login-box">
+    <>
+     {loading ? <Loader/> : ""}
+     <LoginStyled className="login-box">
       <h2>Registration</h2>
       <form onSubmit={OnsubmitHandler}>
         <div className="user-box">
@@ -71,6 +78,8 @@ const Register = () => {
       </form>
       <h6 className='my-2'>alredy have accout <Link to="/">Login</Link></h6>
     </LoginStyled>
+    </>
+   
   )
 }
 

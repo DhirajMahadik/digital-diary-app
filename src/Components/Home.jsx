@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { HomeStyled } from '../StyledComponents/HomeStyled'
 import { PersonCircle } from 'react-bootstrap-icons'
 import { useNavigate } from 'react-router-dom'
-
-
+import Loader from './Loader'
 
 const Home = () => {
   const navigate = useNavigate()
   const [task, setTask] = useState({
-    title: "", content: "", date: Date()
+       title: "", content: ""
   })
   const [editTask, setEditTask] = useState({
     title: "", content: ""
   })
+
+  const [loading, setLoading] =useState(false)
 
   const [profileInfo, setProfileInfo] = useState({})
 
@@ -36,19 +37,23 @@ const Home = () => {
   }
 
   const onSubmitHandler = (e) => {
+    setLoading(true)
     e.preventDefault();
     fetch('https://different-lingerie-goat.cyclic.app/add-task', { method: "POST", body: JSON.stringify(Object.assign({ task, id: user.id })), headers: { 'Content-Type': 'application/json' } }).then((res) => {
       if (res.status === 200) {
         setTask({title:"", content:""})
         getProfile()
+        setLoading(false)
       }
     })
   }
 
   const updateProfile =()=>{
+    setLoading(true)
     fetch('https://different-lingerie-goat.cyclic.app/edit-profile', { method: "POST", body: JSON.stringify(Object.assign({ fullname:profileInfo.fullname, email:profileInfo.email, phone:profileInfo.phone, id: user.id })), headers: { 'Content-Type': 'application/json' } }).then((res) => {
       if (res.status === 200) {
         getProfile()
+        setLoading(false)
       }
     })
   }
@@ -57,26 +62,32 @@ const Home = () => {
 
   const onEditSubmitHandler = (e) => {
     e.preventDefault();
+    setLoading(true)
     console.log(editTask)
     fetch('https://different-lingerie-goat.cyclic.app/edit-task', { method: "PUT", body: JSON.stringify(Object.assign({ editTask, id: user.id })), headers: { 'Content-Type': 'application/json' } }).then((res) => {
       if (res.status === 200) {
         getProfile()
+        setLoading(false)
       }
     })
   }
 
   const deleteTask = (selectedTask) => {
+    setLoading(true)
     fetch('https://different-lingerie-goat.cyclic.app/delete-task', { method: "POST", body: JSON.stringify(Object.assign({ selectedTask, id: user.id })), headers: { 'Content-Type': 'application/json' } }).then((res) => {
       if (res.status === 200) {
         getProfile()
+        setLoading(false)
       }
     })
   }
 
   const completeTask = (selectedTask) => {
+    setLoading(true)
     fetch('https://different-lingerie-goat.cyclic.app/complete-task', { method: "POST", body: JSON.stringify(Object.assign({ selectedTask, id: user.id })), headers: { 'Content-Type': 'application/json' } }).then((res) => {
       if (res.status === 200) {
         getProfile()
+        setLoading(false)
       }
     })
   }
@@ -93,6 +104,7 @@ const Home = () => {
   console.log(task)
 
   const getProfile = () => {
+    setLoading(true)
     let token = localStorage.getItem('auth_token')
     console.log(token)
 
@@ -105,6 +117,7 @@ const Home = () => {
         console.log(response)
         setUser(response)
         setProfileInfo(response)
+        setLoading(false)
       }
 
     })
@@ -122,7 +135,9 @@ const Home = () => {
 
 
   return (
-    <HomeStyled>
+    <>
+     {loading ? <Loader/> : ""}
+     <HomeStyled>
       <div className='profile-info'>
         <div className='heading'>
           <h2>Profile</h2>
@@ -177,11 +192,11 @@ const Home = () => {
             return <div className='task'>
               <div className='date-time d-flex'>
                 <h6>Date</h6>
-                <span className='m-auto mx-2'>{element.date.slice(0, 24)}</span>
+                <span className='m-auto mx-2'>{element.date ? element.date.slice(0, 24):""}</span>
               </div>
               <div className='task-content'>
-                <h5>{element.title}</h5>
-                <span>{element.content}</span>
+                <h5>{element.title ? element.title: ""}</h5>
+                <span>{element.content ? element.content:""}</span>
               </div>
               <div className='task-actions'>
                 <button className='edit' data-bs-toggle="modal" data-bs-target="#editTask" onClick={() => editTaskValues(element)}>Edit</button>
@@ -333,6 +348,8 @@ const Home = () => {
       </div>
 
     </HomeStyled>
+    </>
+   
   )
 }
 
