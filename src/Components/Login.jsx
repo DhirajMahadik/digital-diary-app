@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginStyled } from '../StyledComponents/LoginStyled'
+import { ToastContainer, toast } from 'react-toastify'
 
 
 const Login = () => {
@@ -9,12 +10,22 @@ const Login = () => {
     email:"", password:""
   })
 
+   const Toastoptions= {
+        position:"top-center",
+        autoClose: 6000,
+        pauseOnHover: true,
+        draggable:true,
+        theme :"light"
+
+    };
+
   const onChangeHandler = (e) =>{
     setCredentials({...credentials, [e.target.name]: e.target.value})
   }
 
 const login = (e)=>{
 e.preventDefault()
+toast.loading("please wait ", Toastoptions)
 fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:JSON.stringify(credentials), headers:{'Content-Type':'application/json'}}).then((res)=>{
     return res.json()
 }).then((token)=>{
@@ -28,6 +39,8 @@ fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:
 }).catch((err)=>{
   console.log(err)
 })
+
+
 }
 
   return (
@@ -55,7 +68,9 @@ fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:
         </button>
       </form>
       <h6 className='my-2'>don't have accout <Link to="/register">Register</Link></h6>
+      <ToastContainer />
     </LoginStyled>
+    
   )
 }
 

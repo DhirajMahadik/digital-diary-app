@@ -4,6 +4,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
