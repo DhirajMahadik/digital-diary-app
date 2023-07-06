@@ -190,13 +190,14 @@ const Home = () => {
         <div className='task-container'>
           {user.task.map((element) => {
             return <div className='task'>
-              <div className='date-time d-flex'>
+              {/* <div className='date-time d-flex'>
                 <h6>Date</h6>
                 <span className='m-auto mx-2'>{element.date ? element.date.slice(0, 24):""}</span>
-              </div>
+              </div> */}
               <div className='task-content'>
                 <h5>{element.title ? element.title: ""}</h5>
                 <span>{element.content ? element.content:""}</span>
+                <span style={{color:"#6ca4dc", fontSize:"13px"}}> Added on : {Date(element.date)}</span>
               </div>
               <div className='task-actions'>
                 <button className='edit' data-bs-toggle="modal" data-bs-target="#editTask" onClick={() => editTaskValues(element)}>Edit</button>
