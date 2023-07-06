@@ -54,7 +54,7 @@ fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:
 }
 
   return (
-  <>
+  <div style={{display:"flex", height:"100vh", width:"100vw",backgroundColor:"#6495ed82"}}>
      {loading ? <Loader/> : ""}
    <LoginStyled className="login-box">
    
@@ -84,7 +84,7 @@ fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:
    <ToastContainer />
  </LoginStyled>
  
-  </>
+  </div>
    
   )
 }

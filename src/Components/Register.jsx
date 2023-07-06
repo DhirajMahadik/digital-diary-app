@@ -42,7 +42,7 @@ const Register = () => {
     }
 
   return (
-    <>
+    <div style={{display:"flex", height:"100vh", width:"100vw",backgroundColor:"#6495ed82"}}>
      {loading ? <Loader/> : ""}
      <LoginStyled className="login-box">
       <h2>Registration</h2>
@@ -78,7 +78,7 @@ const Register = () => {
       </form>
       <h6 className='my-2'>alredy have accout <Link to="/">Login</Link></h6>
     </LoginStyled>
-    </>
+    </div>
    
   )
 }

@@ -9,13 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
   return (
-   <BrowserRouter>
-   <Routes>
-    <Route path="/" element={<Login/>}/>
-    <Route path="/register" element={<Register/>}/>
-      <Route path="/user-profile" element={<Home/>}/>
-   </Routes>
-   </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/user-profile" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

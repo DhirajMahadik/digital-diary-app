@@ -9,7 +9,7 @@ export const LoginStyled = styled.div`
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgb(228 223 223);
+  background: #f0f0f0;
   box-sizing: border-box;
   /* box-shadow: 0 3px 15px rgba(0,0,0,.6); */
   /* box-shadow: inset rgba(0, 0, 0, 0.6) 0px 3px 15px; */
@@ -72,15 +72,16 @@ h2 {
   overflow: hidden;
   transition: .5s;
   margin-top: 40px;
+  background-color: cadetblue;
   letter-spacing: 4px
 }
 
 form button:hover {
   /* background: #03e9f4; */
-  background: #000;
+  background: #6e92d3;
   color: #fff;
   border-radius: 5px;
-  box-shadow: rgb(0, 0, 0) 0px 0px 5px, rgb(0, 0, 0) 0px 0px 25px, rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 1px
+  /* box-shadow: rgb(0, 0, 0) 0px 0px 5px, rgb(0, 0, 0) 0px 0px 25px, rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 1px */
               /* 0 0 100px #03e9f4; */
 
 }
