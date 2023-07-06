@@ -65,11 +65,11 @@ fetch('https://different-lingerie-goat.cyclic.app/login', {  method:'POST',body:
    <h2>Login</h2>
    <form onSubmit={login}>
      <div className="user-box">
-       <input type="email" name="email" onChange={onChangeHandler} value={credentials.email} required="" />
-       <label>Username</label>
+       <input type="email" name="email" onChange={onChangeHandler}  value={credentials.email} required />
+       <label>Email</label>
      </div>
      <div className="user-box">
-       <input type="password" name="password" onChange={onChangeHandler} value={credentials.password} required="" />
+       <input type="password" name="password" onChange={onChangeHandler}  value={credentials.password} required />
        <label>Password</label>
      </div>
      <button type='submit' >
